@@ -5,6 +5,7 @@ using UnityEngine;
 public class InputSystemFromLostArk : MonoBehaviour
 {
     public Animator animator;
+    public KeyCode lastInputKeyCode;
 
     private void Start()
     {
@@ -13,6 +14,8 @@ public class InputSystemFromLostArk : MonoBehaviour
 
     private void Update()
     {
+        var info = animator.GetCurrentAnimatorStateInfo(0);
+
         if (Input.GetKeyDown(KeyCode.Q))
         {
             SetAnimatorTrigger(KeyCode.Q);
@@ -30,5 +33,6 @@ public class InputSystemFromLostArk : MonoBehaviour
     private void SetAnimatorTrigger(KeyCode keyCode)
     {
         animator.SetTrigger(string.Format("Attack_{0}", keyCode.ToString()));
+        lastInputKeyCode = keyCode;
     }
 }
